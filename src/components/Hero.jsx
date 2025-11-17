@@ -9,7 +9,8 @@ export default function Hero() {
         <Spline scene="https://prod.spline.design/VJLoxp84lCdVfdZu/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60 pointer-events-none"></div>
+      {/* Soft vignette to improve contrast in both themes */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-white/0 to-black/40 dark:from-black/40 dark:via-black/20 dark:to-black/60 pointer-events-none"></div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-36 pb-20">
         <motion.div
@@ -23,8 +24,9 @@ export default function Hero() {
             <span className="text-xs">Open to work • Frontend & Full‑stack</span>
           </div>
 
-          <h1 className="mt-6 text-4xl sm:text-6xl font-bold tracking-tight bg-gradient-to-br from-gray-900 to-gray-700 dark:from-white dark:via-white dark:to-white/70 bg-clip-text text-transparent">
+          <h1 className="mt-6 text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 dark:text-white">
             <Typewriter
+              className="bg-gradient-to-br from-gray-900 to-gray-700 dark:from-white dark:via-white dark:to-white/70 bg-clip-text text-transparent"
               words={[
                 'Building delightful web experiences',
                 'Crafting fast, accessible interfaces',

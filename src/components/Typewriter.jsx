@@ -42,9 +42,12 @@ export default function Typewriter({ words = [], speed = 90, delay = 1200, class
   const text = words.length ? words[index % words.length].substring(0, subIndex) : ''
 
   return (
-    <span className={className}>
-      {text}
-      <span className={`inline-block w-[1ch] ${blink ? 'opacity-100' : 'opacity-0'}`}>|</span>
+    <span className="inline-flex items-baseline">
+      <span className={className}>{text}</span>
+      <span
+        aria-hidden
+        className={`ml-1 inline-block h-[1em] w-[2px] self-end rounded-sm align-baseline ${blink ? 'opacity-100' : 'opacity-0'} bg-gray-900 dark:bg-white`}
+      />
     </span>
   )
 }
