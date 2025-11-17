@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Menu, X, Github, Linkedin, Mail, PenSquare, FolderGit2, Home } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import SocialBar from './SocialBar'
 
 const navItems = [
   { label: 'Home', to: '/' },
@@ -20,7 +21,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between px-4 py-3">
             <Link to="/" className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-500 via-violet-500 to-fuchsia-500" />
-              <span className="text-white/90 font-semibold tracking-tight">My Portfolio</span>
+              <span className="text-white/90 font-semibold tracking-tight">Awais Khan</span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-6">
@@ -38,15 +39,7 @@ export default function Navbar() {
             </nav>
 
             <div className="hidden md:flex items-center gap-3">
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
-                <Github size={18} />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
-                <Linkedin size={18} />
-              </a>
-              <Link to="/contact" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
-                <Mail size={18} />
-              </Link>
+              <SocialBar />
             </div>
 
             <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg bg-white/10 text-white/90">
@@ -71,15 +64,7 @@ export default function Navbar() {
                 ))}
               </div>
               <div className="flex items-center gap-3 mt-3">
-                <a href="https://github.com" target="_blank" rel="noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
-                  <Github size={18} />
-                </a>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
-                  <Linkedin size={18} />
-                </a>
-                <Link to="/contact" onClick={() => setOpen(false)} className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
-                  <Mail size={18} />
-                </Link>
+                <SocialBar />
               </div>
             </div>
           )}
