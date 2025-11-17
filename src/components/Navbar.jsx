@@ -1,10 +1,13 @@
 import { useState } from 'react'
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react'
+import { Link, NavLink } from 'react-router-dom'
+import { Menu, X, Github, Linkedin, Mail, PenSquare, FolderGit2, Home } from 'lucide-react'
 
 const navItems = [
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'Portfolio', to: '/portfolio' },
+  { label: 'Blog', to: '/blog' },
+  { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export default function Navbar() {
@@ -15,16 +18,22 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mt-4 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
           <div className="flex items-center justify-between px-4 py-3">
-            <a href="#home" className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-500 via-violet-500 to-fuchsia-500"></div>
+            <Link to="/" className="flex items-center gap-2">
+              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-500 via-violet-500 to-fuchsia-500" />
               <span className="text-white/90 font-semibold tracking-tight">My Portfolio</span>
-            </a>
+            </Link>
 
             <nav className="hidden md:flex items-center gap-6">
               {navItems.map((item) => (
-                <a key={item.href} href={item.href} className="text-white/80 hover:text-white transition-colors">
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `text-white/80 hover:text-white transition-colors ${isActive ? 'text-white' : ''}`
+                  }
+                >
                   {item.label}
-                </a>
+                </NavLink>
               ))}
             </nav>
 
@@ -35,9 +44,9 @@ export default function Navbar() {
               <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
                 <Linkedin size={18} />
               </a>
-              <a href="#contact" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
+              <Link to="/contact" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
                 <Mail size={18} />
-              </a>
+              </Link>
             </div>
 
             <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg bg-white/10 text-white/90">
@@ -49,9 +58,16 @@ export default function Navbar() {
             <div className="md:hidden px-4 pb-4">
               <div className="grid gap-2">
                 {navItems.map((item) => (
-                  <a key={item.href} href={item.href} onClick={() => setOpen(false)} className="text-white/90 bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2">
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    onClick={() => setOpen(false)}
+                    className={({ isActive }) =>
+                      `text-white/90 bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2 ${isActive ? 'ring-1 ring-white/30' : ''}`
+                    }
+                  >
                     {item.label}
-                  </a>
+                  </NavLink>
                 ))}
               </div>
               <div className="flex items-center gap-3 mt-3">
@@ -61,9 +77,9 @@ export default function Navbar() {
                 <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
                   <Linkedin size={18} />
                 </a>
-                <a href="#contact" className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
+                <Link to="/contact" onClick={() => setOpen(false)} className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white/90">
                   <Mail size={18} />
-                </a>
+                </Link>
               </div>
             </div>
           )}
