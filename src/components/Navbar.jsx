@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import SocialBar from './SocialBar'
+import ThemeToggle from './ThemeToggle'
 
 const navItems = [
   { label: 'Home', to: '/' },
@@ -17,11 +18,11 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mt-4 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
+        <div className="mt-4 backdrop-blur-xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 rounded-2xl shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
           <div className="flex items-center justify-between px-4 py-3">
             <Link to="/" className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-500 via-violet-500 to-fuchsia-500" />
-              <span className="text-white/90 font-semibold tracking-tight">Awais Khan</span>
+              <span className="text-gray-900 dark:text-white/90 font-semibold tracking-tight">Awais Khan</span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-6">
@@ -30,7 +31,7 @@ export default function Navbar() {
                   key={item.to}
                   to={item.to}
                   className={({ isActive }) =>
-                    `text-white/80 hover:text-white transition-colors ${isActive ? 'text-white' : ''}`
+                    `text-gray-700 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors ${isActive ? 'font-semibold text-black dark:text-white' : ''}`
                   }
                 >
                   {item.label}
@@ -39,10 +40,11 @@ export default function Navbar() {
             </nav>
 
             <div className="hidden md:flex items-center gap-3">
+              <ThemeToggle />
               <SocialBar />
             </div>
 
-            <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg bg-white/10 text-white/90">
+            <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg bg-black/5 dark:bg-white/10 text-gray-900 dark:text-white/90">
               {open ? <X /> : <Menu />}
             </button>
           </div>
@@ -56,7 +58,7 @@ export default function Navbar() {
                     to={item.to}
                     onClick={() => setOpen(false)}
                     className={({ isActive }) =>
-                      `text-white/90 bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2 ${isActive ? 'ring-1 ring-white/30' : ''}`
+                      `text-gray-900 dark:text-white/90 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 rounded-lg px-3 py-2 ${isActive ? 'ring-1 ring-black/10 dark:ring-white/30' : ''}`
                     }
                   >
                     {item.label}
@@ -64,6 +66,7 @@ export default function Navbar() {
                 ))}
               </div>
               <div className="flex items-center gap-3 mt-3">
+                <ThemeToggle />
                 <SocialBar />
               </div>
             </div>
